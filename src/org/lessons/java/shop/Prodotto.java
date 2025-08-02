@@ -81,4 +81,8 @@ public class Prodotto {
             this.iva = newIva;
         }
     } 
+    @Override
+    public String toString() {
+        return String.format("Nome: %s \n Brand: %s \n Prezzo: %.2f \n Iva: %d", this.name, this.brand, this.price, this.iva);
+    }
 }

@@ -39,4 +39,9 @@ public class Cuffie extends Prodotto {
         }
     }
 
+        @Override
+    public String toString() {
+        return String.format("%s \n Colore cuffie: %s \n Sono bluetooth? %s", super.toString(), this.color, this.isWireless);
+    }
+
 }

@@ -38,4 +38,9 @@ public class Smartphone extends Prodotto{
         }
     } 
 
+
+    @Override
+    public String toString() {
+        return String.format("%s \n Codice IMEI: %s \n Memoria in GB %d", super.toString(), this.getImeiCode(), this.getMemory());
+    }
 }
