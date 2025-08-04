@@ -10,6 +10,11 @@ public class Cuffie extends Prodotto {
         this.color = color;
         this.isWireless = isWireless;
     }
+    public Cuffie ( String name, String brand, float price, int iva, boolean hasFidelity, String color, boolean isWireless){
+        super(name, brand, price, iva, hasFidelity);
+        this.color = color;
+        this.isWireless = isWireless;
+    }
 
     // GETTER
 
@@ -42,6 +47,17 @@ public class Cuffie extends Prodotto {
         @Override
     public String toString() {
         return String.format("%s \n Colore cuffie: %s \n Sono bluetooth? %s", super.toString(), this.color, this.isWireless);
+    }
+        @Override
+    public float getFullPrice() {
+
+        if (this.getFidelity()){ 
+            if (!this.isWireless) {
+                return this.getPrice() + (this.getPrice() * this.getIva()/100) - (this.getPrice() * 7/100);
+            }
+            else return super.getFullPrice();
+        }
+        else return super.getFullPrice();
     }
 
 }

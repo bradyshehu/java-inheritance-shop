@@ -5,6 +5,11 @@ public class Smartphone extends Prodotto{
     private String imeiCode;
     private int memory;
 
+    public Smartphone(String name, String brand, float price, int iva, boolean hasFidelity, String imeiCode, int memory) {
+        super(name, brand, price, iva, hasFidelity);
+        this.imeiCode = imeiCode;
+        this.memory = memory;
+    }
     public Smartphone(String name, String brand, float price, int iva, String imeiCode, int memory) {
         super(name, brand, price, iva);
         this.imeiCode = imeiCode;
@@ -42,5 +47,16 @@ public class Smartphone extends Prodotto{
     @Override
     public String toString() {
         return String.format("%s \n Codice IMEI: %s \n Memoria in GB %d", super.toString(), this.getImeiCode(), this.getMemory());
+    }
+
+    @Override
+    public float getFullPrice() {
+        if (this.getFidelity()){ 
+            if (this.memory < 32) {
+                return this.getPrice() + (this.getPrice() * this.getIva()/100) - (this.getPrice() * 5/100);
+            }
+        else return super.getFullPrice();
+        }
+        else return super.getFullPrice();
     }
 }

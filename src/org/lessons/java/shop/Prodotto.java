@@ -11,13 +11,23 @@ public class Prodotto {
     private String brand;
     private float price;
     private int iva;
+    private boolean hasFidelity;
 
+    public Prodotto (String name, String brand, float price, int iva, boolean hasFidelity){
+        this.code = rand.nextInt(99999);
+        this.name = name;
+        this.brand = brand;
+        this.price = price;
+        this.iva = iva;
+        this.hasFidelity = hasFidelity;
+    }
     public Prodotto (String name, String brand, float price, int iva){
         this.code = rand.nextInt(99999);
         this.name = name;
         this.brand = brand;
         this.price = price;
         this.iva = iva;
+        this.hasFidelity = false;
     }
 
     // GETTER 
@@ -37,6 +47,9 @@ public class Prodotto {
 
     public float getPrice () {
         return price;
+    }
+    public boolean getFidelity () {
+        return hasFidelity;
     }
 
     // public String getPrice () {
@@ -81,6 +94,17 @@ public class Prodotto {
             this.iva = newIva;
         }
     } 
+
+    public float getFullPrice(){
+        if (hasFidelity){
+            return (price + (price * iva/100) - (price * 2/100)); 
+        }
+        else {
+            return price + (price * iva/100);
+        }
+
+        
+    };
     @Override
     public String toString() {
         return String.format("Nome: %s \n Brand: %s \n Prezzo: %.2f \n Iva: %d", this.name, this.brand, this.price, this.iva);

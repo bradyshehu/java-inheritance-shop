@@ -20,6 +20,13 @@ public class Televisore extends Prodotto {
         this.isSmartTV = isSmartTV;
     }
 
+    public Televisore ( String name, String brand, float price, int iva, boolean hasFidelity, int height, int width, boolean isSmartTV) {
+        super(name, brand, price, iva, hasFidelity);
+        this.height = height;
+        this.width = width;
+        this.isSmartTV = isSmartTV;
+    }
+
     // GETTER
     
     public String getDimension() {
@@ -57,5 +64,17 @@ public class Televisore extends Prodotto {
         @Override
     public String toString() {
         return String.format("%s \n Dimentioni televisione: %dx%d \n é una SmartTv? %s", super.toString(), this.height , this.width , this.isSmartTV);
+    }
+
+    
+    @Override
+    public float getFullPrice() {
+        if (this.getFidelity()){ 
+            if (!this.isSmartTV) {
+                return this.getPrice() + (this.getPrice() * this.getIva()/100) - (this.getPrice() * 10/100);
+            }
+            else return super.getFullPrice();
+        }
+        else return super.getFullPrice();
     }
 }

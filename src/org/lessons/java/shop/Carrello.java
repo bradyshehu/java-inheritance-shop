@@ -12,6 +12,12 @@ public class Carrello {
         
         boolean isShopping = true;
         String userChoice;
+
+        
+        System.out.println("Benvenuto nel nostro shop!");
+        System.out.println("Innanzitutto, hai la tessera fedeltá?(true/false)");
+        boolean hasFidelity = sc.nextBoolean();
+        sc.nextLine();
         
         // SCELTA UTENTE
         while (isShopping){
@@ -51,7 +57,7 @@ public class Carrello {
                     sc.nextLine();
 
 
-                    Smartphone telefono = new Smartphone(name, brand, price, iva, imei, memory);
+                    Smartphone telefono = new Smartphone(name, brand, price, iva, hasFidelity, imei, memory);
 
 
                     newCarrello[newCarrello.length - 1] = telefono;
@@ -83,7 +89,7 @@ public class Carrello {
                     sc.nextLine();
 
 
-                    Televisore tv = new Televisore(name, brand, price, iva, height, width, isSmartTV);
+                    Televisore tv = new Televisore(name, brand, price, iva, hasFidelity, height, width, isSmartTV);
 
                     newCarrello[newCarrello.length - 1] = tv;
                     carrello = newCarrello;
@@ -108,7 +114,7 @@ public class Carrello {
                     boolean isWireless = sc.nextBoolean();
                     sc.nextLine();
 
-                    Cuffie cuffie = new Cuffie(name, brand, price, iva, color, isWireless);
+                    Cuffie cuffie = new Cuffie(name, brand, price, iva, hasFidelity, color, isWireless);
                     newCarrello[newCarrello.length - 1] = cuffie;
                     carrello = newCarrello;
 
@@ -125,7 +131,7 @@ public class Carrello {
                         newCarrello[i] = carrello[i];
                     }
                     
-                    Prodotto prodotto = new Prodotto(name, brand, price, iva);
+                    Prodotto prodotto = new Prodotto(name, brand, price, iva, hasFidelity);
                     newCarrello[newCarrello.length - 1] = prodotto;
                     carrello = newCarrello;
                     
@@ -141,9 +147,12 @@ public class Carrello {
             if (!isShopping){ 
                     System.out.println("Il tuo carrello:");
                     if (carrello.length > 0){
+                        float finalCartPrice = 0;
                         for(int i = 0; i < carrello.length;i++ ){
                             System.out.println(String.format("------------------------ \n%s\n ------------------------", carrello[i]));
+                            finalCartPrice += carrello[i].getFullPrice();
                         }
+                        System.out.println(String.format("++++++++++++++ Prezzo totale: %.2f ++++++++++++++", finalCartPrice));
                     }
                     else {
                         System.out.println("É vuoto.");
